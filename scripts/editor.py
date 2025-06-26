@@ -137,13 +137,6 @@ def edit(subtitles, chunked_text, music_path, background_path, color1, char_name
             for word in segment['words']:
                 word_clip = pop_in_word(word['word'], word['start'], word['end'], color1)
 
-                # backgorund_txt = TextClip(
-                #     text=segment['text'],
-                #     font_size=55,
-                #     color='white',
-                # ).with_start(segment['words'][0]['start']).with_end(segment['words'][-1]['end']).with_position('center')
-
-                # subtitle_clips.append(backgorund_txt)
                 subtitle_clips.append(word_clip)
 
     elif gen_type=='dialogue':
@@ -168,14 +161,6 @@ def edit(subtitles, chunked_text, music_path, background_path, color1, char_name
 
                 word_clip = pop_in_word(word['word'], word_start, word_end, color)
 
-
-                # backgorund_txt = TextClip(
-                #     text=segment['text'],
-                #     font_size=55,
-                #     color='white',
-                # ).with_start(segment['words'][0]['start']).with_end(segment['words'][-1]['end']).with_position('center')
-
-                # subtitle_clips.append(backgorund_txt)
                 subtitle_clips.append(word_clip)
 
     final = CompositeVideoClip([background, *additional_images_clips, *character_clips, *subtitle_clips])

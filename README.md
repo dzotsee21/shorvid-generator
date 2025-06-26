@@ -4,6 +4,7 @@
 Create dynamic, meme-style videos with your own characters, background music, voices, fonts, and even auto-generated, context-relevant images.
 
 ## Generated video examples
+https://github.com/user-attachments/assets/9822470a-cbad-4848-b7bd-66891ef280f0
 Click [here](https://drive.google.com/drive/folders/1NEEnMn_2R7_H4f8W72DB_2I9_ZtDp-Rg?usp=sharing) to view examples on Google Drive.
 
 ## ✨ Features

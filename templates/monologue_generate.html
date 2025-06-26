@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>Shorvid</title>
+</head>
+<body>
+
+    <div class="section">
+        <a href="{{ url_for('dialogue_generator') }}">Go to Duo generator →</a>
+    </div>
+
+    <div class="warning">
+        ⚠️ READ THIS IF YOU WANT TO PROCEED!
+        If you use custom names and have "Display Character" enabled, make sure the desired image is placed in the <code>static/characters</code> folder with the exact file name as the character name you typed.
+        for example: if you type character name Subaru, there has to exist same file name (Subaru.*) inside <code>static/characters</code> folder.
+    </div>
+
+    <form method="POST">
+        <div class="section">
+            <label>Character</label>
+            <textarea class="character-textarea" name="character" placeholder="Write name of the character">Rem</textarea>
+        </div>
+
+
+        <div class="section">
+            <textarea class="script-textarea" name="script" placeholder="Write video script here"></textarea>
+        </div>
+
+        <div class="section">
+            <p>Select Music</p>
+            <select name="music" id="music-dropdown">
+                {% for music in music_files %}
+                    <option value="{{ music }}">{{ music }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="section">
+            <p>Select Background Video</p>
+            <select name="background" id="background-dropdown">
+                {% for bg in background_files %}
+                    <option value="{{ bg }}">{{ bg }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="section">
+            <label>
+                <input type="checkbox" name="character">
+                Display Character
+            </label>
+            <label>
+                <input type="checkbox" name="images">
+                Display Images
+            </label>
+        </div>
+
+        <button type="submit" name="generate">Generate</button>
+    </form>
+
+    {% if message %}
+        <p class="section">{{ message }}</p>
+    {% endif %}
+
+    <h3>Generated Videos</h3>
+    <div class="video-preview">
+        {% for video_path in videos_path %}
+            <a href="{{ url_for('upload_video', video_path=video_path) }}">
+                <video src="{{ url_for('static', filename='temp/videos/' + video_path) }}" controls width="180"></video>
+            </a>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

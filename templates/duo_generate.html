@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>Shorvid - Duo Generator</title>
+</head>
+<body>
+
+    <div class="section">
+        <a href="{{ url_for('monologue_generator') }}">Go to Monologue Generator →</a>
+    </div>
+
+    <div class="warning">
+        ⚠️ READ THIS IF YOU WANT TO PROCEED!
+        If you use custom names and have "Display Character" enabled, make sure the desired image is placed in the <code>static/characters</code> folder with the exact file name as the character name you typed.
+
+        Example of how Duo Generator works is shown below.
+    </div>
+
+    <form method="POST">
+        <div class="section">
+            <label>First Character</label>
+            <textarea class="character-textarea" name="character_1" placeholder="Write name of the first character">Rem</textarea>
+            <span>(Primary voice)</span>
+        </div>
+
+        <div class="section">
+            <label>Second Character</label>
+            <textarea class="character-textarea" name="character_2" placeholder="Write name of the second Character">Subaru</textarea>
+        </div>
+
+        <div class="section">
+            <label>Script</label>
+            <textarea class="script-textarea" name="script" placeholder="Write video script here">Rem:
+So, this is how it works?
+
+Subaru:
+Yep, you just type text like this and boom! it works!
+
+Rem:
+Hah, who knew this would be this easy!</textarea>
+        </div>
+
+        <div class="section">
+            <p>Select Music</p>
+            <select name="music" id="music-dropdown">
+                {% for music in music_files %}
+                    <option value="{{ music }}">{{ music }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="section">
+            <p>Select Background Video</p>
+            <select name="background" id="background-dropdown">
+                {% for bg in background_files %}
+                    <option value="{{ bg }}">{{ bg }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="section">
+            <label>
+                <input type="checkbox" title="Include Character" name="character">
+                Display Characters
+            </label>
+        </div>
+
+        <button type="submit" name="generate">Generate</button>
+    </form>
+
+    {% if message %}
+        <p class="section">{{ message }}</p>
+    {% endif %}
+
+    <h3>Generated Videos</h3>
+    <div class="video-preview">
+        {% for video_path in videos_path %}
+            <a href="{{ url_for('upload_video', video_path=video_path) }}">
+                <video src="{{ url_for('static', filename='temp/videos/' + video_path) }}" controls width="180"></video>
+            </a>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

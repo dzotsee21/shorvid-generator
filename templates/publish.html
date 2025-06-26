@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shorvid - Publish</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <style>
+        .publish-container {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        video {
+            border: 1px solid #333;
+            border-radius: 6px;
+        }
+
+        form {
+            flex: 1;
+            min-width: 300px;
+            background-color: #1a1d25;
+            padding: 2rem;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 80px;
+            background-color: #0f1117;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 1rem;
+            color: #e0e0e0;
+            resize: vertical;
+            font-family: "Fira Code", monospace;
+        }
+
+        button {
+            background-color: #4ea1ff;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+            width: fit-content;
+        }
+
+        button:disabled {
+            background-color: #2a2a2a;
+            color: #888;
+            cursor: not-allowed;
+        }
+
+        button[name="remove"] {
+            background-color: #ff4e4e;
+        }
+
+        button[name="remove"]:hover {
+            background-color: #d43c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <a href="{{ url_for('monologue_generator') }}">Go to Monologue Generator →</a>
+        <br>
+        <a href="{{ url_for('dialogue_generator') }}">Go to Duo generator →</a>
+    </div>
+
+    <div class="publish-container">
+        <video src="{{ url_for('static', filename='temp/videos/' + video_path) }}" controls width="360"></video>
+
+        <form method="POST">
+            <textarea name="title" placeholder="Video Title"></textarea>
+            <textarea name="description" placeholder="Video Description"></textarea>
+            <textarea name="tags" placeholder="Video Tags"></textarea>
+
+            <input type="hidden" name="video_path" value="{{ video_path }}">
+
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button type="submit" name="publish" disabled>Publish to YouTube (coming soon)</button>
+                <button type="submit" name="remove">Remove</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

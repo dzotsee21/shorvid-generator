@@ -1,0 +1,31 @@
+# Text-to-Speech model selection (required)
+# Options:
+#   - edge-tts (100% free, uses Microsoft voices)
+#   - eleven-labs (freemium, high-quality voices)
+tts-model: edge-tts
+
+# Voice configuration for edge-tts (only used if tts-model is "edge-tts")
+# to view all the available voices, type 'edge-tts --list-voices' in your terminal
+tts-voice-name-1: en-US-AvaMultilingualNeural   # Primary voice used for monologue generation
+tts-voice-name-2: en-US-BrianMultilingualNeural # Secondary/optional voice (for dialogues or variation)
+
+# Voice configuration for eleven-labs (only used if tts-model is "eleven-labs")
+eleven-labs-api-key: YOUR-ELEVEN-LABS-API-KEY   # Required if using eleven-labs
+tts-voice-id-1: ''  # Primary ElevenLabs voice ID (you can find this in your ElevenLabs dashboard)
+tts-voice-id-2: ''  # Secondary/optional ElevenLabs voice ID
+
+# Subtitle color customization per character
+character-1-subtitles-color: "orange"  # Subtitle color for character 1 (primary voice character)
+character-2-subtitles-color: "cyan"    # Subtitle color for character 2 (if used)
+
+# Optional: Enable context-relevant image search via Google
+# Free tier allows ~100 searches/day. Enables richer video output with image overlays.
+google-search-api-key: GOOGLE-SEARCH-API-KEY      # Google Programmable Search API key
+google-search-engine-id: GOOGLE-SEARCH-ENGINE-ID  # Custom Search Engine ID
+
+# Optional: Required if using image search — used for fast image captioning and context# This is a free key from Groq
+groq-api-key: GROQ-API-KEY
+
+# Optional: Upload generated video to YouTube
+# Still a work in progress, requires a valid Google OAuth2 secret file
+google-secret-file-path: YOUR-GOOGLE-SECRET-FILE-PATH

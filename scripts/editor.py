@@ -60,9 +60,10 @@ def edit(subtitles, chunked_text, music_path, background_path, color1, char_name
 
     background = VideoFileClip(f"static/background_videos/{background_path}").subclipped(0, duration).resized((1080, 1920))
 
-    bg_music = AudioFileClip(f'static/musics/{music_path}')
-    bg_music = bg_music.subclipped(0, audio.duration)
-    bg_music = bg_music.with_effects([afx.MultiplyVolume(0.05)])
+    if music_path != 'no-music':
+        bg_music = AudioFileClip(f'static/musics/{music_path}')
+        bg_music = bg_music.subclipped(0, audio.duration)
+        bg_music = bg_music.with_effects([afx.MultiplyVolume(0.05)])
 
 
     additional_images_clips = []
@@ -164,10 +165,11 @@ def edit(subtitles, chunked_text, music_path, background_path, color1, char_name
                 subtitle_clips.append(word_clip)
 
     final = CompositeVideoClip([background, *additional_images_clips, *character_clips, *subtitle_clips])
-    final_audio = CompositeAudioClip([bg_music, audio])
+    if music_path != 'no-music':
+        final_audio = CompositeAudioClip([bg_music, audio])
+    else:
+        final_audio = audio
     final = final.with_audio(final_audio)
-
-
 
     folder_length = len(os.listdir('static/temp/videos'))
     filename = random_filename(folder_length)

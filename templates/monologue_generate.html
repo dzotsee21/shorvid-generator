@@ -32,6 +32,7 @@
         <div class="section">
             <p>Select Music</p>
             <select name="music" id="music-dropdown">
+                <option value="no-music">No Music</option>
                 {% for music in music_files %}
                     <option value="{{ music }}">{{ music }}</option>
                 {% endfor %}

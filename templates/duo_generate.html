@@ -47,6 +47,7 @@ Hah, who knew this would be this easy!</textarea>
             <p>Select Music</p>
             <select name="music" id="music-dropdown">
                 {% for music in music_files %}
+                    <option value="no-music">No Music</option>
                     <option value="{{ music }}">{{ music }}</option>
                 {% endfor %}
             </select>

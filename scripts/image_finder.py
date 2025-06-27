@@ -19,28 +19,28 @@ def google_search(full_text, num=1):
     search_queries = generate_search_query_v1(full_text).split("\n")
 
     for search_query in search_queries:
-        # try:
-        if search_query == '':
-            continue
-        
-        params = {
-            'key': google_search_api_key,
-            'cx': google_search_engine_id,
-            'q': search_query,
-            'searchType': 'image',
-            'num': num
-        }
-
-        response = httpx.get(base_url, params=params)
-        response.raise_for_status()
-
-        data = response.json()
-
-        image_url = [item["link"] for item in data.get("items", [])][0]
-
-        image_urls.append(image_url)
-        # except Exception as e:
-        #     print(e)
+        try:
+            if search_query == '':
+                continue
+            
+            params = {
+                'key': google_search_api_key,
+                'cx': google_search_engine_id,
+                'q': search_query,
+                'searchType': 'image',
+                'num': num
+            }
+    
+            response = httpx.get(base_url, params=params)
+            response.raise_for_status()
+    
+            data = response.json()
+    
+            image_url = [item["link"] for item in data.get("items", [])][0]
+    
+            image_urls.append(image_url)
+        except Exception as e:
+            print(e)
     return image_urls
 
 

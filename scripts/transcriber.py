@@ -51,9 +51,9 @@ def transcribe(has_images, gen_type='monologue', filename='static/temp/out.wav')
 
     result = model.transcribe(filename, word_timestamps=True)
 
-    chunked_text, full_text = chunk_text(result)
-
     if has_images:
+        chunked_text, full_text = chunk_text(result)
+
         fetched_images = google_search(full_text)
 
         download_images(fetched_images)

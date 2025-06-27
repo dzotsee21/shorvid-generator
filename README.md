@@ -12,6 +12,7 @@ https://github.com/user-attachments/assets/9822470a-cbad-4848-b7bd-66891ef280f0
 - 🔊 Supports both [ElevenLabs](https://elevenlabs.io) (freemium) and [Edge-TTS](https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/tts-overview) (completely free)
 
 ## ⚙️ Installation
+⚠️ Use Python 3.10 or lower in your virtual environment, newer versions might break the install.
 ```bash
 git clone https://github.com/dzotsee21/shorvid-generator.git
 cd shorvid-generator

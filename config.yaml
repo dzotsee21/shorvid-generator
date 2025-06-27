@@ -23,7 +23,8 @@ character-2-subtitles-color: "cyan"    # Subtitle color for character 2 (if used
 google-search-api-key: GOOGLE-SEARCH-API-KEY      # Google Programmable Search API key
 google-search-engine-id: GOOGLE-SEARCH-ENGINE-ID  # Custom Search Engine ID
 
-# Optional: Required if using image search — used for fast image captioning and context# This is a free key from Groq
+# Optional: Required if using image search, used for fast image captioning and context
+# This is a free key from Groq
 groq-api-key: GROQ-API-KEY
 
 # Optional: Upload generated video to YouTube

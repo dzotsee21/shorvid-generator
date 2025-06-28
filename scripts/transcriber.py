@@ -1,12 +1,19 @@
 from .utils import parse_timestamp, format_timestamp, clean_word_data
 from .image_finder import google_search, download_images
 import whisper
+import subprocess
+import sys
 import re
 import os
 import spacy
 from pydub import AudioSegment
 
-nlp = spacy.load("en_core_web_sm")
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    print("Model 'en_core_web_sm' not found. Downloading it...")
+    subprocess.run([sys.executable, "-m", "spacy", "download", "en_core_web_sm"], check=True)
+    nlp = spacy.load("en_core_web_sm")
 model = whisper.load_model('base')
 
 def extract_number(filename):
@@ -51,6 +58,7 @@ def transcribe(has_images, gen_type='monologue', filename='static/temp/out.wav')
 
     result = model.transcribe(filename, word_timestamps=True)
 
+    chunked_text = ""
     if has_images:
         chunked_text, full_text = chunk_text(result)
 

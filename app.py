@@ -22,8 +22,17 @@ def monologue_generator():
 
             return redirect(url_for('monologue_generator'))
 
+    # make folder if it doesn't exist
+    if not os.path.exists('static/musics'):
+        os.makedirs('static/musics')
     music_files = os.listdir('static/musics')
+
+    if not os.path.exists('static/background_videos'):
+        os.makedirs('static/background_videos')
     background_files = os.listdir('static/background_videos')
+
+    if not os.path.exists('static/temp/videos'):
+        os.makedirs('static/temp/videos')
     video_files = os.listdir('static/temp/videos')
 
     return render_template('monologue_generate.html', music_files=music_files, background_files=background_files, videos_path=video_files)

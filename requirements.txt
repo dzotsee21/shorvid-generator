@@ -1,9 +1,9 @@
-moviepy==2.12.2
+moviepy==2.2.1
 Pillow==10.4.0
 groq==0.13.1
 spacy==3.8.7
 pydub==0.25.1
-edge_tts==7.0.0
+edge_tts==7.2.7
 elevenlabs==2.5.0
 google-auth-oauthlib==1.2.2
 google-auth==2.37.0
